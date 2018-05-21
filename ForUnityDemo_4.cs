@@ -7,23 +7,21 @@ using System.Xml;
 using System.IO;
 
 public class do_ServerFunction : MonoBehaviour {
-	string ServerUpdateType;
+    string ServerUpdateType;
     static get_do_Function.do_commit_battle_result_Bai battle_result_Bai;
     static get_do_Function.do_bet_RootObject do_bet_RootObject_data;
     static get_do_Function.do_exchange_RootObject do_exchange_RootObject_data;
     static string Login_Award_ID;
 
-    //static string HeroAddExpAfter;
     static string Now_Scene;
     static XmlStructLoad xmlStructLoad;
   
-	// Update is called once per frame
+	//更新server回傳資料後的畫面
 	void Update () {
-        //更新server回傳資料後的畫面
+        
         switch (ServerUpdateType)
         {
             case "Disconnect":
-                //斷線
                 NGUITools.AddChild(GameObject.Find("Camera"), messageonebuttonPanel);
                 GameObject.Find("MessageOneButtonPanel(Clone)/tv_Message").GetComponent<UILabel>().text = "與伺服器斷線";
                 GlobalValue.inUpload = false;
@@ -137,7 +135,6 @@ public class do_ServerFunction : MonoBehaviour {
                 ServerUpdateType = "";
                 break;
             case "Error":
-                //MessageOneButtonPanel.SetActive(true);
                 NGUITools.AddChild(GameObject.Find("Camera"), messageonebuttonPanel);
                 GameObject.Find("MessageOneButtonPanel(Clone)/tv_Message").GetComponent<UILabel>().text = xmlStructLoad.string_Configuration.Strings.String.Find(x => x.Id == GlobalValue.Now_ret.ToString()).Desc;
                 ServerUpdateType = "";
@@ -181,9 +178,8 @@ public class do_ServerFunction : MonoBehaviour {
         string Json = JsonConvert.SerializeObject(do_rootObject);
         
         JFSocketNonblocking.GetInstance().sendToServer(NET_MSG_API.EM_SERVER_LOGIC_MSG_TYPE.SLMT_ACTION, Json, ((string content) =>
-        { //傳送至Server
-            //Server回傳結果
-            
+        { //傳送至Server   Server回傳結果
+ 
             if (content == null || content == "")
             {
                 ServerUpdateType = "Disconnect";
