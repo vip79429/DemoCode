@@ -35,10 +35,7 @@ public class Stand_HistoryDetail extends Activity{
 				public void run() {
 					Json_connection mJson = new Json_connection();
 
-					Cursor mCursor_M = null,mCuror_B, mCursro_R;
-					JSONObject UserHistory = mJson
-							.Get_OrderdedDetails_Test(Stand_OrderedHistory.historyKEY);
-					Log.e("Stand_OrderedHistory.historyKEY",Stand_OrderedHistory.historyKEY);
+					JSONObject UserHistory = mJson.Get_OrderdedDetails_Test(Stand_OrderedHistory.historyKEY);
 
 					if(UserHistory==null)
 					{
@@ -81,29 +78,21 @@ public class Stand_HistoryDetail extends Activity{
 									.length(); branch_index++) {
 								
 								mCursor_M = mSqlMenuitem.getMenuItemById(jsonArray_orderDetails
-										.getJSONObject(branch_index).getString(
-												"menuItemKey"));
+										.getJSONObject(branch_index).getString("menuItemKey"));
 								if(mCursor_M.getCount()>0)
 									mCursor_M.moveToPosition(0);
 								
-								historyDetail[branch_index][0] = mCursor_M
-										.getString(SQL_MenuItem.index.menuItemName);
-								historyDetail[branch_index][1] = mCursor_M
-										.getString(SQL_MenuItem.index.menuItemPrice);
-								historyDetail[branch_index][2] = mCursor_M
-										.getString(SQL_MenuItem.index.menuItemDiscount);
-								historyDetail[branch_index][3] = jsonArray_orderDetails
-										.getJSONObject(branch_index).getString(
-												"quantity");
-								historyDetail[branch_index][4] = jsonArray_orderDetails
-										.getJSONObject(branch_index).getString("menuItemKey");
+								historyDetail[branch_index][0] = mCursor_M.getString(SQL_MenuItem.index.menuItemName);
+								historyDetail[branch_index][1] = mCursor_M.getString(SQL_MenuItem.index.menuItemPrice);
+								historyDetail[branch_index][2] = mCursor_M.getString(SQL_MenuItem.index.menuItemDiscount);
+								historyDetail[branch_index][3] = jsonArray_orderDetails.getJSONObject(branch_index).getString("quantity");
+								historyDetail[branch_index][4] = jsonArray_orderDetails.getJSONObject(branch_index).getString("menuItemKey");
 							}
 							if (mCursor_M!=null)
 								mCursor_M.close();
 							
 				
-							JSONArray jsonArray_orderSets = UserHistory
-								.getJSONArray("orderSetDetails");
+							JSONArray jsonArray_orderSets = UserHistory.getJSONArray("orderSetDetails");
 							historySets = new String[jsonArray_orderSets.length()][5];
 							TYPEMenuIteml = new String[jsonArray_orderSets.length()];
 							for (int i=0;i<TYPEMenuIteml.length;i++){
@@ -112,21 +101,15 @@ public class Stand_HistoryDetail extends Activity{
 							
 								for (int branch_index = 0; branch_index < jsonArray_orderSets.length(); branch_index++) {
 													
-									mCursor_M = mSqlSets.getMenuItemById(jsonArray_orderSets
-											.getJSONObject(branch_index).getString("setKey"));
+									mCursor_M = mSqlSets.getMenuItemById(jsonArray_orderSets.getJSONObject(branch_index).getString("setKey"));
 									if(mCursor_M.getCount()>0)
 										mCursor_M.moveToPosition(0);
 									
-									historySets[branch_index][0] = mCursor_M
-										.getString(SQL_Sets.index.setName);
-									historySets[branch_index][1] = mCursor_M
-										.getString(SQL_Sets.index.setPrice);
-									historySets[branch_index][2] = mCursor_M
-										.getString(SQL_Sets.index.setDiscount);
-									historySets[branch_index][3] = jsonArray_orderSets
-										.getJSONObject(branch_index).getString("quantity");
-									historySets[branch_index][4] = jsonArray_orderSets
-										.getJSONObject(branch_index).getString("setKey");
+									historySets[branch_index][0] = mCursor_M.getString(SQL_Sets.index.setName);
+									historySets[branch_index][1] = mCursor_M.getString(SQL_Sets.index.setPrice);
+									historySets[branch_index][2] = mCursor_M.getString(SQL_Sets.index.setDiscount);
+									historySets[branch_index][3] = jsonArray_orderSets.getJSONObject(branch_index).getString("quantity");
+									historySets[branch_index][4] = jsonArray_orderSets.getJSONObject(branch_index).getString("setKey");
 									
 									Cursor mCursorSMenuItem = mSqlSetsMenuitem.getMenuItemById(
 											mCursor_M.getString(SQL_Sets.index.menuItemId));
@@ -163,8 +146,7 @@ public class Stand_HistoryDetail extends Activity{
 										
 										historySets[branch_index][0] = historySets[branch_index][0] +
 											mCursor_M.getString(SQL_MenuItem.index.menuItemName) + " ";
-										TYPEMenuIteml[branch_index] = TYPEMenuIteml[branch_index]
-										                                            + jsonArray_orderSets_TYPE.getString(i) + ",";
+										TYPEMenuIteml[branch_index] = TYPEMenuIteml[branch_index] + jsonArray_orderSets_TYPE.getString(i) + ",";
 										Log.e(String.valueOf(branch_index), TYPEMenuIteml[branch_index]);
 									}
 										
@@ -186,8 +168,8 @@ public class Stand_HistoryDetail extends Activity{
 					
 									
 									JSONArray jsonArray_orderAPDetailMenuItem = jsonArray_orderAPDetail
-									.getJSONObject(branch_index)
-									.getJSONArray("menuItemAdditionalPropertyValueKeys");
+										.getJSONObject(branch_index)
+										.getJSONArray("menuItemAdditionalPropertyValueKeys");
 									
 									mCursor_M = mSqlAPDetail.getadditionalPropertykey(
 											jsonArray_orderAPDetailMenuItem.getString(0));
@@ -209,9 +191,9 @@ public class Stand_HistoryDetail extends Activity{
 									historyAPDetail[branch_index][2] = 
 										mCursor_APMenuItem.getString(SQL_MenuItem.index.menuItemDiscount);
 									historyAPDetail[branch_index][3] = jsonArray_orderAPDetail
-									.getJSONObject(branch_index).getString("quantity");
+										.getJSONObject(branch_index).getString("quantity");
 									historyAPDetail[branch_index][4] = jsonArray_orderAPDetail
-									.getJSONObject(branch_index).getString("key");
+										.getJSONObject(branch_index).getString("key");
 				
 									for (int i=0;i<jsonArray_orderAPDetailMenuItem.length();i++){
 						
@@ -332,6 +314,7 @@ public class Stand_HistoryDetail extends Activity{
 		}
 
 	}
+
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -346,40 +329,4 @@ public class Stand_HistoryDetail extends Activity{
 			super.handleMessage(msg);
 		}
 	};
-
-	//異同步畫面處理
-	Handler mHandler2 = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-				case 0x001:
-				{
-					mProgressdialog.dismiss();
-					// 切換頁面
-					((Stand_MasterPage)Stand_MasterPage.MasterContext).back();
-					((Stand_OrderedHistory)Stand_OrderedHistory.context).onResume();
-				}
-					break;
-				case 0x002:
-				{
-					mProgressdialog.dismiss();
-					// 切換頁面
-					mDialog.setTitle("訊息");
-					mDialog.setMessage("訂單錯誤!");
-					
-					mDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-						
-						
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							dialog.dismiss();
-						}
-					});
-					mDialog.show();
-				}
-					break;
-			}
-			super.handleMessage(msg);
-		}
-	};
-	
 }
