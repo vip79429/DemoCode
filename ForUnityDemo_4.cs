@@ -12,7 +12,8 @@ public class do_ServerFunction : MonoBehaviour {
     static XmlStructLoad xmlStructLoad;
   
 	//更新server回傳資料後的畫面
-	void Update () {
+	void Update () 
+	{
 		switch (ServerUpdateType)
 		{
 		    case "Disconnect":
