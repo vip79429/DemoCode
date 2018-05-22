@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-
 using System.Collections;
-
-
 
 public class GoldPath : MonoBehaviour {
     GameObject musiceffectManager;
@@ -49,9 +46,6 @@ public class GoldPath : MonoBehaviour {
         StartCoroutine(GoldAnimation());
     
     }
-
-		
-
 
     IEnumerator GoldAnimation()
     {
