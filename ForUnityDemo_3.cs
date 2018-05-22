@@ -8,7 +8,6 @@ public class GoldPath : MonoBehaviour {
     Camera guiCamera;
     TweenScale ivGold;
     Vector3[] paths;
-	// Use this for initialization
 
     void Start()
     {
@@ -17,7 +16,8 @@ public class GoldPath : MonoBehaviour {
         worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         guiCamera = GameObject.Find("Camera").GetComponent<Camera>();
     }
-
+	
+    //傷害彈跳路徑
     public void SetGold(Transform t) {
         Vector3 pos = worldCamera.WorldToViewportPoint(t.transform.position);
         if (pos.z >= 0)
