@@ -37,7 +37,7 @@ public class GameStartActivity extends Activity {
 		int r = (int) (Math.random() * 100 + 1); // 猜拳機率
 		winCount++;
 		
-		if (true) { // 必勝
+		if (true) { //單機測試必勝
 			if (userStone == 1) {
 				gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone2);
 			} else if (userStone == 2) {
