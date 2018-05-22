@@ -101,14 +101,10 @@ public class GameStartActivity extends Activity {
 			gamestartImageView_character.setEnabled(false);
 			gamestart_stoneControl.setVisibility(View.INVISIBLE);
 			gamestartButton_cross.setEnabled(false);
-			gamestartButton_start
-					.setBackgroundResource(R.drawable.gamestart_bt_start);
-			gamestartButton_stone1
-					.setBackgroundResource(R.drawable.gamestart_stone11);
-			gamestartButton_stone2
-					.setBackgroundResource(R.drawable.gamestart_stone21);
-			gamestartButton_stone3
-					.setBackgroundResource(R.drawable.gamestart_stone31);
+			gamestartButton_start.setBackgroundResource(R.drawable.gamestart_bt_start);
+			gamestartButton_stone1.setBackgroundResource(R.drawable.gamestart_stone11);
+			gamestartButton_stone2.setBackgroundResource(R.drawable.gamestart_stone21);
+			gamestartButton_stone3.setBackgroundResource(R.drawable.gamestart_stone31);
 			gamestartImageView_result.setVisibility(View.INVISIBLE);
 			
 			gamestartImageView_star[LevelCharacterProcess - 1].setVisibility(View.VISIBLE);
