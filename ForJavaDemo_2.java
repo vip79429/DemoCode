@@ -26,7 +26,7 @@ public class GameStartActivity extends Activity {
 		int chance = Integer.valueOf(temp);
 
 		if (isMyServiceRunning(DogService.class)){
-			chance = chance + 10; //³Ó²v¦h10%
+			chance = chance + 10; //å‹ç‡å¤š10%
 		}
 		
 		indentify = getResources().getIdentifier(
@@ -34,10 +34,10 @@ public class GameStartActivity extends Activity {
 				"com.example.mora");
 		String cross = getResources().getString(indentify);
 		
-		int r = (int) (Math.random() * 100 + 1); // ²q®±¾÷²v
+		int r = (int) (Math.random() * 100 + 1); // çŒœæ‹³æ©Ÿç‡
 		winCount++;
 		
-		if (true) { // ¥²³Ó
+		if (true) { // å¿…å‹
 			if (userStone == 1) {
 				gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone2);
 			} else if (userStone == 2) {
@@ -49,13 +49,13 @@ public class GameStartActivity extends Activity {
 					.getIdentifier("gamestart_win_" + ((int) (Math.random() * 3) + 1),
 							"drawable", "com.example.mora")));
 			
-			//Ä¹
+			//è´
 			LevelCharacterProcessWin = true;
 			handler.postDelayed(addStarRunnable, 3000);
 		} else { // lose
 			r = (int) (Math.random() * 2);
 			if (userStone == 1) {
-				if (r == 0) { // ¥­¤â
+				if (r == 0) { // å¹³æ‰‹
 					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone1);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, R.drawable.gamestart_tie));
 				} else {
@@ -70,7 +70,7 @@ public class GameStartActivity extends Activity {
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, getResources()
 							.getIdentifier("gamestart_failed_"+ ((int) (Math.random() * 2) + 1),
 									"drawable", "com.example.mora")));
-				} else { // ¥­¤â
+				} else { // å¹³æ‰‹
 					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone2);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, R.drawable.gamestart_tie));
 				}
@@ -81,12 +81,12 @@ public class GameStartActivity extends Activity {
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, getResources()
 							.getIdentifier("gamestart_failed_"+ ((int) (Math.random() * 2) + 1),
 									"drawable", "com.example.mora")));
-				} else { // ¥­¤â
+				} else { // å¹³æ‰‹
 					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone3);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, R.drawable.gamestart_tie));
 				}
 			}
-			//¿é
+			//è¼¸
 			LevelCharacterProcessWin = false;
 			handler.postDelayed(failedContinutRannable, 3000);
 		}
@@ -170,7 +170,6 @@ public class GameStartActivity extends Activity {
 					                	if (hp_total ==0){
 					                		handler.postDelayed(new Runnable() {
 					                			public void run() {
-//					                				gamestartButton_shop.callOnClick();
 					                				gamestartButton_shop.performClick();
 					                				shopImageView_ms_title.setImageBitmap(Function_BitmapScale(GameStartActivity.this, R.drawable.gamestart_ms_shop2));
 					                			}
@@ -183,7 +182,7 @@ public class GameStartActivity extends Activity {
 							}
 						};    
 					}else{
-						//²Ä10Ãö¹LÃö
+						//ç¬¬10é—œéé—œ
 						LevelCharacterProcess ++;
 						gamestartImageView_level_result[0].setImageBitmap(Function_BitmapScale(GameStartActivity.this, R.drawable.gamestart_level_win1));
 						handler.postDelayed(ShowMSRunnable, 800);
