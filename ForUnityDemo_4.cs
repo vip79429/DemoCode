@@ -9,21 +9,16 @@ using System.IO;
 public class do_ServerFunction : MonoBehaviour {
     string ServerUpdateType;
     static get_do_Function.do_commit_battle_result_Bai battle_result_Bai;
-    static get_do_Function.do_bet_RootObject do_bet_RootObject_data;
-    static get_do_Function.do_exchange_RootObject do_exchange_RootObject_data;
-    static string Login_Award_ID;
-
-    static string Now_Scene;
     static XmlStructLoad xmlStructLoad;
   
-	//§ó·sserver¦^¶Ç¸ê®Æ«áªºµe­±
+	//æ›´æ–°serverå›å‚³è³‡æ–™å¾Œçš„ç•«é¢
 	void Update () {
         
         switch (ServerUpdateType)
         {
             case "Disconnect":
                 NGUITools.AddChild(GameObject.Find("Camera"), messageonebuttonPanel);
-                GameObject.Find("MessageOneButtonPanel(Clone)/tv_Message").GetComponent<UILabel>().text = "»P¦øªA¾¹Â_½u";
+                GameObject.Find("MessageOneButtonPanel(Clone)/tv_Message").GetComponent<UILabel>().text = "èˆ‡ä¼ºæœå™¨æ–·ç·š";
                 GlobalValue.inUpload = false;
                 ServerLoadingPanel.serverOpen = false;
                 JFSocketNonblocking.GetInstance().Closed();
@@ -57,42 +52,42 @@ public class do_ServerFunction : MonoBehaviour {
                     switch (rt)
                     {
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_GOLD:
-                            Debug.Log("¶Àª÷¼Æ¶q:" + rtv.ToString());
+                            Debug.Log("é»ƒé‡‘æ•¸é‡:" + rtv.ToString());
                             temp.Add("Icon_Misson_Reward_001");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_COIN:
-                            Debug.Log("µw¹ô¼Æ¶q:" + rtv.ToString());
+                            Debug.Log("ç¡¬å¹£æ•¸é‡:" + rtv.ToString());
                             temp.Add("Icon_Misson_Reward_004");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_DIAMOND:
-                            Debug.Log("Æp¥Û¼Æ¶q:" + rtv.ToString());
+                            Debug.Log("é‘½çŸ³æ•¸é‡:" + rtv.ToString());
                             temp.Add("Icon_Misson_Reward_002");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_STAMINA:
-                            Debug.Log("Åé¤O¼Æ¶q:" + rtv.ToString());
+                            Debug.Log("é«”åŠ›æ•¸é‡:" + rtv.ToString());
                             temp.Add("Icon_Misson_Reward_005");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_CTRYSTAL:
-                            Debug.Log("CTRYSTAL¼Æ¶q:" + rtv.ToString());
+                            Debug.Log("CTRYSTALæ•¸é‡:" + rtv.ToString());
                             temp.Add("0");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_MEDAL:
-                            Debug.Log("MEDAL¼Æ¶q:" + rtv.ToString());
+                            Debug.Log("MEDALæ•¸é‡:" + rtv.ToString());
                             temp.Add("Icon_Misson_Reward_003");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_ROLE_EXP:
-                            Debug.Log("¨¤¦âEXP:" + rtv.ToString());
+                            Debug.Log("è§’è‰²EXP:" + rtv.ToString());
                             temp.Add("Icon_Misson_Reward_006");
                             temp.Add(rtv.ToString());
                             break;
                         case (int)NET_MSG_API.EM_GAME_RESOURCE_TYPE.GRT_SKILL_POINT:
-                            Debug.Log("§Ş¯àÂI¼Æ:" + rtv.ToString());
+                            Debug.Log("æŠ€èƒ½é»æ•¸:" + rtv.ToString());
                             temp.Add("0");
                             temp.Add(rtv.ToString());
                             break;
@@ -129,7 +124,7 @@ public class do_ServerFunction : MonoBehaviour {
                 LobbyManager.db_Server.updateInto("mail_unread_count", "count", (int.Parse(LobbyManager.db_Server.searchOneCondition("count", "mail_unread_count", "id", "=", "1")) - 1).ToString(), "id", "1");
                 GameObject.Find("MailPanel(Clone)/MailButtonEvent").SendMessage("Start");
                 gameObject.SendMessage("role_info_refresh");
-                //¶}±ÒÀò±o®Ø
+                //é–‹å•Ÿç²å¾—æ¡†
                 GameObject.Find("MessageGetItemPanel(Clone)/MessageGetItem_Grid").SendMessage("ReceiveGetItem", temp.ToArray());
 
                 ServerUpdateType = "";
@@ -158,11 +153,11 @@ public class do_ServerFunction : MonoBehaviour {
                 return "ret:" + ret + "\n" + data;
             }
         }
-        return "ret:" + ret + "\n" + "¨S¦³¹ïÀ³ªºstring";
+        return "ret:" + ret + "\n" + "æ²’æœ‰å°æ‡‰çš„string";
     }
 
     /// <summary>
-    /// ­^¶¯¥æ´«
+    /// è‹±é›„äº¤æ›
     /// <para>id: team id</para>
     /// <para>id2: first hero id </para>
     /// <para>id3: second hero id</para>
@@ -178,7 +173,7 @@ public class do_ServerFunction : MonoBehaviour {
         string Json = JsonConvert.SerializeObject(do_rootObject);
         
         JFSocketNonblocking.GetInstance().sendToServer(NET_MSG_API.EM_SERVER_LOGIC_MSG_TYPE.SLMT_ACTION, Json, ((string content) =>
-        { //¶Ç°e¦ÜServer   Server¦^¶Çµ²ªG
+        { //å‚³é€è‡³Server   Serverå›å‚³çµæœ
  
             if (content == null || content == "")
             {
@@ -190,7 +185,7 @@ public class do_ServerFunction : MonoBehaviour {
 
             if (rootObject.data.ret == 0)
             {
-                //§ó·sµe­±
+                //æ›´æ–°ç•«é¢
                 ServerUpdateType = "do_switch_team_hero";
             }
             else
