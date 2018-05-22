@@ -137,6 +137,7 @@ public class do_ServerFunction : MonoBehaviour {
 		}
 	}
 
+    //文字檔
     string showXml(string ret)
     {
         TextAsset filepath = (TextAsset)Resources.Load("xml/" + "string", typeof(TextAsset));
