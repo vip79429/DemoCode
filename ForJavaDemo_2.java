@@ -20,8 +20,7 @@ public class GameStartActivity extends Activity {
 		handler.removeCallbacks(AIRunnable);
 
 		int indentify = getResources().getIdentifier(
-				"Level" + String.valueOf(LevelProcess) + "_"
-						+ LevelCharacterProcess + "_win_chances", "string",
+				"Level" + String.valueOf(LevelProcess) + "_" + LevelCharacterProcess + "_win_chances", "string",
 				"com.example.mora");
 		String temp = getResources().getString(indentify);
 		int chance = Integer.valueOf(temp);
@@ -31,8 +30,7 @@ public class GameStartActivity extends Activity {
 		}
 		
 		indentify = getResources().getIdentifier(
-				"Level" + String.valueOf(LevelProcess) + "_"
-						+ LevelCharacterProcess + "_win_count", "string",
+				"Level" + String.valueOf(LevelProcess) + "_" + LevelCharacterProcess + "_win_count", "string",
 				"com.example.mora");
 		String cross = getResources().getString(indentify);
 		
@@ -41,18 +39,14 @@ public class GameStartActivity extends Activity {
 		
 		if (true) { // ゲ較
 			if (userStone == 1) {
-				gamestartButton_start
-						.setBackgroundResource(R.drawable.gamestart_pc_stone2);
+				gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone2);
 			} else if (userStone == 2) {
-				gamestartButton_start
-						.setBackgroundResource(R.drawable.gamestart_pc_stone3);
+				gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone3);
 			} else if (userStone == 3) {
-				gamestartButton_start
-						.setBackgroundResource(R.drawable.gamestart_pc_stone1);
+				gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone1);
 			}
 			gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, getResources()
-					.getIdentifier(
-							"gamestart_win_" + ((int) (Math.random() * 3) + 1),
+					.getIdentifier("gamestart_win_" + ((int) (Math.random() * 3) + 1),
 							"drawable", "com.example.mora")));
 			
 			//長
@@ -62,30 +56,22 @@ public class GameStartActivity extends Activity {
 			r = (int) (Math.random() * 2);
 			if (userStone == 1) {
 				if (r == 0) { // キも
-					gamestartButton_start
-							.setBackgroundResource(R.drawable.gamestart_pc_stone1);
+					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone1);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, R.drawable.gamestart_tie));
 				} else {
-					gamestartButton_start
-							.setBackgroundResource(R.drawable.gamestart_pc_stone3);
+					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone3);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, getResources()
-							.getIdentifier(
-									"gamestart_failed_"
-											+ ((int) (Math.random() * 2) + 1),
+							.getIdentifier("gamestart_failed_"+ ((int) (Math.random() * 2) + 1),
 									"drawable", "com.example.mora")));
 				}
 			} else if (userStone == 2) {
 				if (r == 0) {
-					gamestartButton_start
-							.setBackgroundResource(R.drawable.gamestart_pc_stone1);
+					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone1);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, getResources()
-							.getIdentifier(
-									"gamestart_failed_"
-											+ ((int) (Math.random() * 2) + 1),
+							.getIdentifier("gamestart_failed_"+ ((int) (Math.random() * 2) + 1),
 									"drawable", "com.example.mora")));
 				} else { // キも
-					gamestartButton_start
-							.setBackgroundResource(R.drawable.gamestart_pc_stone2);
+					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone2);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, R.drawable.gamestart_tie));
 				}
 			} else if (userStone == 3) {
@@ -93,13 +79,10 @@ public class GameStartActivity extends Activity {
 					gamestartButton_start
 							.setBackgroundResource(R.drawable.gamestart_pc_stone2);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, getResources()
-							.getIdentifier(
-									"gamestart_failed_"
-											+ ((int) (Math.random() * 2) + 1),
+							.getIdentifier("gamestart_failed_"+ ((int) (Math.random() * 2) + 1),
 									"drawable", "com.example.mora")));
 				} else { // キも
-					gamestartButton_start
-							.setBackgroundResource(R.drawable.gamestart_pc_stone3);
+					gamestartButton_start.setBackgroundResource(R.drawable.gamestart_pc_stone3);
 					gamestartImageView_result.setImageBitmap(Function_BitmapScale(this, R.drawable.gamestart_tie));
 				}
 			}
@@ -173,8 +156,7 @@ public class GameStartActivity extends Activity {
 							void onAnimationFinish() {
 								// TODO Auto-generated method stub
 								Bitmap bitmap = Function_BitmapScale(GameStartActivity.this, getResources().getIdentifier(
-										"level" + String.valueOf(LevelProcess) + "_"
-												+ LevelCharacterProcess, "drawable",
+										"level" + String.valueOf(LevelProcess) + "_"+ LevelCharacterProcess, "drawable",
 										"com.example.mora"));
 								gamestartImageView_character.setImageBitmap(Bitmap.createScaledBitmap(bitmap, (int) (metrics.widthPixels * 0.8), (int) (metrics.heightPixels * 0.72), true));
 
